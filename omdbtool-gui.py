@@ -1,4 +1,5 @@
 
+from __future__ import print_function
 import argparse
 import urllib
 import sys
@@ -45,7 +46,7 @@ def main():
     result = result.replace('","', ',')
     chars_to_remove = ['"','[',']','{','}']
     result = result.translate(None, ''.join(chars_to_remove))
-    print result
+    print(result)
     sys.exit()
   # formats data as html
   elif args.format == 'html':
@@ -54,7 +55,7 @@ def main():
     chars_to_remove = ['"','[',']']
     result = result.translate(None, ''.join(chars_to_remove))
     result = result.replace('}','</p>')
-    print result
+    print(result)
     sys.exit()
 
   # formats the data as markdown
@@ -63,7 +64,7 @@ def main():
     result = result.replace('{','##')
     chars_to_remove = ['"','[',']','}']
     result = result.translate(None, ''.join(chars_to_remove))
-    print result
+    print(result)
     sys.exit()
   
   # Encoding the data from --season option crashs the program this prints the data with out having to encode it
@@ -72,15 +73,15 @@ def main():
     result = result.translate(None, ''.join(chars_to_remove))
     result = result.replace(',', '\n')
     result = result.replace('{','\n\n\n')
-    print result
+    print(result)
     sys.exit()
   # print requested info
 
   data = json.loads(result)
   for k in data:
-    print k.lower() + ":"
-    print data[k].encode('utf-8')
-    print "\n"
+    print(k.lower() + ":")
+    print(data[k].encode('utf-8'))
+    print("\n")
 
 if __name__ == '__main__':
   main()
